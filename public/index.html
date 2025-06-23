@@ -192,6 +192,7 @@
     </div>
 
     <script>
+        
         let currentAudioUrl = null;
 
         async function generateVoice() {
@@ -209,7 +210,26 @@
             document.getElementById('generateBtn').disabled = true;
 
             try {
-                const response = await fetch(`/api/generate?prompt=${encodeURIComponent(prompt)}`);
+                
+                /*const response = await fetch(`/api/generate?prompt=${encodeURIComponent(prompt)}`);
+                const response = await fetch("https://your-backend.onrender.com/ask", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ message: userInput })
+})
+.then(res => res.json())
+.then(data => {
+  // show chatbot response
+});*/
+
+                const response = await fetch("https://aivoiceapp.onrender.com/", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ message: prompt })
+});
+
+
+                
                 const data = await response.json();
 
                 if (response.ok) {
